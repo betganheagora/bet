@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassino Betano - Jogos Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a2c3d, #1a1a2e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(10, 23, 38, 0.9);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-left: 15px;
+        }
+        
+        .btn-login {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+        
+        .btn-register {
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            border: none;
+            color: #0a2c3d;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Main Content */
+        .hero {
+            padding: 60px 5%;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            position: relative;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            color: #0a2c3d;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Games Section */
+        .games-section {
+            padding: 60px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #ff8c00, #ffd700);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .game-img {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        .game-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .game-category {
+            color: #ffd700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .play-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            color: #0a2c3d;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Promo Section */
+        .promo-section {
+            background: linear-gradient(135deg, #1a2a3a, #0d1520);
+            padding: 60px 5%;
+            text-align: center;
+        }
+        
+        .promo-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .promo-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .promo-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .promo-highlight {
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            color: #0a2c3d;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a1420;
+            padding: 40px 5% 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #ff8c00, #ffd700);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ffd700;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            color: #0a2c3d;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #1a2a3a, #0d1520);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid #ffd700;
+            text-align: center;
+            transform: scale(0.7);
+            transition: transform 0.5s ease;
+        }
+        
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .popup-close:hover {
+            transform: rotate(90deg);
+            color: #ff8c00;
+        }
+        
+        .popup-title {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .promo-code {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed #ffd700;
+            margin: 25px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #ffd700;
+        }
+        
+        .popup-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .bonus-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 15px 0;
+        }
+        
+        .deposit-info {
+            background: rgba(255, 140, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff8c00;
+        }
+        
+        .btn-popup {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #ff8c00, #ffd700);
+            color: #0a2c3d;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .btn-popup:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .terms {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup Promocional -->
+    <div class="popup-overlay active">
+        <div class="popup-content">
+            <span class="popup-close"><i class="fas fa-times"></i></span>
+            <h2 class="popup-title">PROMOÇÃO ESPECIAL</h2>
+            <p class="popup-text">Código promocional do dia 06/08</p>
+            
+            <div class="promo-code">BETANO2025</div>
+            
+            <p class="popup-text">Você ganhou:</p>
+            <div class="bonus-amount">R$ 103,98</div>
+            <p class="popup-text">para sacar!</p>
+            
+            <div class="deposit-info">
+                <p>Deposite o valor mínimo de <span class="promo-highlight">R$ 30,00</span></p>
+                <p>Após o pagamento coloque seus dados para receber o bônus</p>
+            </div>
+            
+            <a href="https://kiwify-seu-link-aqui.com" class="btn-popup" id="checkout-btn">
+                RESGATAR BÔNUS AGORA
+            </a>
+            
+            <p class="terms">* Oferta válida apenas para novos usuários. O valor do bônus estará disponível após a confirmação do depósito. Aposte com responsabilidade.</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>BETANO</h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#"><i class="fas fa-dice"></i> Cassino</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i> Esportes</a></li>
+                <li><a href="#"><i class="fas fa-gift"></i> Promoções</a></li>
+                <li><a href="#"><i class="fas fa-phone"></i> Suporte</a></li>
+            </ul>
+        </nav>
+        
+        <div class="user-actions">
+            <a href="#" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="#" class="btn btn-register"><i class="fas fa-user-plus"></i> Registrar</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Os melhores jogos de cassino online</h2>
+            <p>Experimente mais de 1000 jogos de cassino, slots, roleta, blackjack e muito mais com bônus exclusivos para novos jogadores!</p>
+            <a href="#" class="btn-large">JOGAR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section">
+        <h2 class="section-title">Jogos Populares</h2>
+        
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1620418003921-433b24b457a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Fortune Tiger</h3>
+                    <p class="game-category">Slot Machine</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Roleta Europeia</h3>
+                    <p class="game-category">Roleta</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Blackjack VIP</h3>
+                    <p class="game-category">Cartas</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1615361200141-f45040f0be0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Bacará Clássico</h3>
+                    <p class="game-category">Cartas</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1615361200141-f45040f0be0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Poker Texas Hold'em</h3>
+                    <p class="game-category">Poker</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1620418003921-433b24b457a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                <div class="game-info">
+                    <h3 class="game-title">Craps Diamante</h3>
+                    <p class="game-category">Dados</p>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Section -->
+    <section class="promo-section">
+        <div class="promo-content">
+            <h2>BÔNUS DE BOAS-VINDAS</h2>
+            <p>Registre-se hoje e receba até <span class="promo-highlight">R$ 1.500</span> em bônus mais <span class="promo-highlight">100 rodadas grátis</span> em slots selecionados!</p>
+            <a href="#" class="btn-large">REGISTRAR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Sobre Nós</h3>
+                <p>O Cassino Betano oferece a melhor experiência de jogos online com segurança, variedade e promoções exclusivas para nossos jogadores.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Cassino</a></li>
+                    <li><a href="#">Esportes</a></li>
+                    <li><a href="#">Promoções</a></li>
+                    <li><a href="#">Suporte</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Jogos</h3>
+                <ul>
+                    <li><a href="#">Slots</a></li>
+                    <li><a href="#">Roleta</a></li>
+                    <li><a href="#">Blackjack</a></li>
+                    <li><a href="#">Poker</a></li>
+                    <li><a href="#">Bacará</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Suporte</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Depósitos</a></li>
+                    <li><a href="#">Saques</a></li>
+                    <li><a href="#">Termos e Condições</a></li>
+                    <li><a href="#">Jogo Responsável</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Cassino Betano. Todos os direitos reservados. Jogue com responsabilidade. Apenas para maiores de 18 anos.</p>
+            <p>Licença: JOGOS DE AZAR DO BRASIL Nº 00000-00000/2023</p>
+        </div>
+    </footer>
+
+    <script>
+        // Popup functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupOverlay = document.querySelector('.popup-overlay');
+            const closePopup = document.querySelector('.popup-close');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            // Show popup on page load
+            popupOverlay.classList.add('active');
+            
+            // Close popup
+            closePopup.addEventListener('click', function() {
+                popupOverlay.classList.remove('active');
+            });
+            
+            // Close popup when clicking outside content
+            popupOverlay.addEventListener('click', function(e) {
+                if (e.target === popupOverlay) {
+                    popupOverlay.classList.remove('active');
+                }
+            });
+            
+            // Checkout button functionality
+            checkoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const checkoutUrl = "https://kiwify-seu-link-aqui.com"; // Replace with actual URL
+                
+                // Here you would normally redirect to the checkout
+                // For now, we'll just show an alert
+                alert(`Redirecionando para o checkout: ${checkoutUrl}`);
+                // window.location.href = checkoutUrl;
+            });
+            
+            // Game cards functionality
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Show popup again when trying to play a game
+                    popupOverlay.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

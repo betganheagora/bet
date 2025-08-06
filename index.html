@@ -546,7 +546,8 @@
             </div>
             
             <a href="https://pay.kiwify.com.br/XxBRa3A" class="btn-popup" id="checkout-btn">
-                RESGATAR BÔNUS AGORA</a>
+                RESGATAR BÔNUS AGORA
+            </a>
             
             <p class="terms">* Oferta válida apenas para novos usuários. O valor do bônus estará disponível após a confirmação do depósito. Aposte com responsabilidade.</p>
         </div>
@@ -712,7 +713,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const popupOverlay = document.querySelector('.popup-overlay');
             const closePopup = document.querySelector('.popup-close');
-            const checkoutBtn = document.getElementById('checkout-btn');
             
             // Show popup on page load
             popupOverlay.classList.add('active');
@@ -729,17 +729,6 @@
                 }
             });
             
-            // Checkout button functionality
-            checkoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const checkoutUrl = "https://pay.kiwify.com.br/XxBRa3A"; // Replace with actual URL
-                
-                // Here you would normally redirect to the checkout
-                // For now, we'll just show an alert
-                alert(`Redirecionando para o checkout: ${checkoutUrl}`);
-                // window.location.href = checkoutUrl;
-            });
-            
             // Game cards functionality
             const gameCards = document.querySelectorAll('.game-card');
             gameCards.forEach(card => {
@@ -752,6 +741,3 @@
     </script>
 </body>
 </html>
-
-
-

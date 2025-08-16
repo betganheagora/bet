@@ -2,746 +2,1067 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=devic0e-width, initial-scale=1.0">
-    <title>Cassino Betano - Jogos Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Tiger - Plataforma Premium de Jogos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Roboto', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0a2c3d, #1a1a2e);
-            color: #fff;
+            background: radial-gradient(circle at center, #0c1a25 0%, #081018 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
             overflow-x: hidden;
+            position: relative;
         }
         
-        /* Header */
-        header {
-            background: rgba(10, 23, 38, 0.9);
-            padding: 15px 5%;
+        /* Efeitos de fundo premium */
+        .background-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(25, 112, 65, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(25, 112, 65, 0.1) 0%, transparent 30%),
+                repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 20px),
+                repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 20px);
+            z-index: -2;
+        }
+        
+        /* Partículas douradas flutuantes */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #ffd700 0%, rgba(255, 215, 0, 0) 70%);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 15s infinite linear;
+        }
+        
+        /* Container Principal */
+        .game-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Header Premium */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+            padding: 20px 30px;
+            background: linear-gradient(145deg, #0d2230 0%, #0a1928 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ffd700, #ff9800);
         }
         
         .logo {
             display: flex;
             align-items: center;
+            gap: 20px;
         }
         
-        .logo img {
-            height: 45px;
-            margin-right: 10px;
+        .logo-icon {
+            font-size: 3.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
         }
         
-        .logo h1 {
-            font-size: 1.8rem;
-            background: linear-gradient(to right, #ffd700, #ff8c00);
+        .logo-text {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ffd700, #ffb700);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 700;
         }
         
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-            padding: 8px 12px;
-            border-radius: 5px;
-        }
-        
-        nav ul li a:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-        
-        .user-actions {
+        .user-section {
             display: flex;
             align-items: center;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            margin-left: 15px;
-        }
-        
-        .btn-login {
-            background: transparent;
-            border: 2px solid #ffd700;
-            color: #ffd700;
-        }
-        
-        .btn-register {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            border: none;
-            color: #0a2c3d;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        /* Main Content */
-        .hero {
-            padding: 60px 5%;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
-            position: relative;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-        
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            line-height: 1.6;
-        }
-        
-        .btn-large {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            color: #0a2c3d;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        
-        .btn-large:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-        }
-        
-        /* Games Section */
-        .games-section {
-            padding: 60px 5%;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, #ff8c00, #ffd700);
-            margin: 10px auto;
-            border-radius: 2px;
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
         
-        .game-card {
-            background: rgba(255, 255, 255, 0.08);
+        .balance {
+            background: rgba(10, 31, 45, 0.9);
+            padding: 15px 25px;
             border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 200px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .balance-label {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .balance-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .balance-value i {
+            font-size: 2rem;
+        }
+        
+        .deposit-button {
+            background: linear-gradient(to right, #00c853, #00b248);
+            color: #fff;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 200, 83, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .deposit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 200, 83, 0.6);
+        }
+        
+        /* Área de Jogos */
+        .games-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .game-card {
+            background: linear-gradient(145deg, #0d2a3a 0%, #0a1f2d 100%);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
             position: relative;
-            height: 300px;
             cursor: pointer;
         }
         
         .game-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
         
-        .game-img {
-            height: 200px;
+        .game-image {
             width: 100%;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .game-info {
-            padding: 20px;
-        }
-        
-        .game-title {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-        
-        .game-category {
-            color: #ffd700;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .play-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            color: #0a2c3d;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            height: 250px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
         
-        .play-btn:hover {
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-image img {
             transform: scale(1.1);
         }
         
-        /* Promo Section */
-        .promo-section {
-            background: linear-gradient(135deg, #1a2a3a, #0d1520);
-            padding: 60px 5%;
-            text-align: center;
+        .game-info {
+            padding: 25px;
         }
         
-        .promo-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .promo-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .promo-content p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-        
-        .promo-highlight {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            padding: 3px 10px;
-            border-radius: 5px;
+        .game-title {
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #0a2c3d;
-        }
-        
-        /* Footer */
-        footer {
-            background: #0a1420;
-            padding: 40px 5% 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(to right, #ff8c00, #ffd700);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
+            margin-bottom: 15px;
             color: #ffd700;
         }
         
-        .social-icons {
+        .game-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin-bottom: 25px;
+        }
+        
+        .play-button {
+            width: 100%;
+            background: linear-gradient(to right, #ffd700, #ffb700);
+            color: #0a1f2d;
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .play-button:hover {
+            background: linear-gradient(to right, #ffb700, #ffd700);
+        }
+        
+        /* Banner de Promoção */
+        .promo-banner {
+            background: linear-gradient(90deg, #8e2de2, #4a00e0);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+        .promo-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 15 L60 40 L85 40 L65 55 L75 85 L50 70 L25 85 L35 55 L15 40 L40 40 Z" fill="%23ffffff" opacity="0.1"/></svg>');
+            background-size: 150px;
+            opacity: 0.2;
+        }
+        
+        .promo-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #ffd700, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .promo-text {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+        
+        .promo-highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        
+        /* Depoimentos */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .testimonial {
+            background: rgba(13, 42, 58, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ff9800);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+        }
+        
+        .testimonial-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            font-style: italic;
+        }
+        
+        .testimonial-amount {
+            color: #ffd700;
+            font-weight: 700;
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #a0a0a0;
+            font-size: 1rem;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Modal de Depósito */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(145deg, #0d2230 0%, #0a1928 100%);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close:hover {
+            transform: rotate(90deg);
+            color: #ff9800;
+        }
+        
+        .modal-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .deposit-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .deposit-option {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            min-width: 200px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .deposit-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .deposit-option i {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .deposit-option h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .deposit-option p {
+            font-size: 1rem;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+        }
+        
+        .deposit-select {
+            background: linear-gradient(to right, #ffd700, #ffb700);
+            color: #0a1f2d;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .deposit-select:hover {
+            background: linear-gradient(to right, #ffb700, #ffd700);
+        }
+        
+        .kiwify-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .kiwify-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .kiwify-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #d0d0d0;
+        }
+        
+        .kiwify-button {
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            color: #fff;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(142, 45, 226, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .kiwify-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(142, 45, 226, 0.6);
+        }
+        
+        .deposit-notice {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .deposit-notice p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .deposit-notice strong {
+            font-size: 1.3rem;
+        }
+        
+        /* Modal de boas-vindas */
+        #welcomeModal {
+            display: flex;
+        }
+        
+        .welcome-content {
+            background: linear-gradient(145deg, #0d2a3a 0%, #0a1f2d 100%);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            position: relative;
+        }
+        
+        .welcome-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .welcome-close:hover {
+            transform: rotate(90deg);
+            color: #ff9800;
+        }
+        
+        .welcome-icon {
+            font-size: 5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+        
+        .welcome-title {
+            font-size: 2.8rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .welcome-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .welcome-highlight {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 1.8rem;
+            display: block;
+            margin: 15px 0;
+        }
+        
+        .welcome-button {
+            background: linear-gradient(to right, #00c853, #00b248);
+            color: #fff;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 200, 83, 0.4);
+            display: inline-flex;
+            align-items: center;
             gap: 15px;
             margin-top: 20px;
         }
         
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffd700;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a:hover {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            color: #0a2c3d;
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-            font-size: 0.9rem;
-        }
-        
-        /* Popup Styles */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-        
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .popup-content {
-            background: linear-gradient(135deg, #1a2a3a, #0d1520);
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            border: 2px solid #ffd700;
-            text-align: center;
-            transform: scale(0.7);
-            transition: transform 0.5s ease;
-        }
-        
-        .popup-overlay.active .popup-content {
-            transform: scale(1);
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            color: #ffd700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .popup-close:hover {
-            transform: rotate(90deg);
-            color: #ff8c00;
-        }
-        
-        .popup-title {
-            font-size: 2rem;
-            color: #ffd700;
-            margin-bottom: 20px;
-        }
-        
-        .promo-code {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px dashed #ffd700;
-            margin: 25px 0;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: #ffd700;
-        }
-        
-        .popup-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-        .bonus-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #ffd700, #ff8c00);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin: 15px 0;
-        }
-        
-        .deposit-info {
-            background: rgba(255, 140, 0, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #ff8c00;
-        }
-        
-        .btn-popup {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            color: #0a2c3d;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            text-decoration: none;
-        }
-        
-        .btn-popup:hover {
+        .welcome-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 12px 25px rgba(0, 200, 83, 0.6);
         }
         
-        .terms {
-            font-size: 0.85rem;
-            color: #aaa;
-            margin-top: 20px;
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .games-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonials {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            header {
+            .header {
                 flex-direction: column;
-                padding: 15px;
+                gap: 25px;
             }
             
-            nav ul {
-                margin: 20px 0;
-                flex-wrap: wrap;
-                justify-content: center;
+            .user-section {
+                flex-direction: column;
             }
             
-            nav ul li {
-                margin: 5px 10px;
+            .games-section {
+                grid-template-columns: 1fr;
             }
             
-            .user-actions {
-                width: 100%;
-                justify-content: center;
-                margin-top: 10px;
+            .testimonials {
+                grid-template-columns: 1fr;
             }
             
-            .hero h2 {
+            .logo-text {
                 font-size: 2.2rem;
             }
             
-            .popup-content {
-                padding: 30px 20px;
+            .deposit-options {
+                flex-direction: column;
+                align-items: center;
             }
+            
+            .deposit-option {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .welcome-content {
+                padding: 30px;
+            }
+            
+            .welcome-title {
+                font-size: 2.2rem;
+            }
+            
+            .welcome-text {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .promo-title {
+                font-size: 1.8rem;
+            }
+            
+            .promo-text {
+                font-size: 1.1rem;
+            }
+            
+            .game-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .deposit-notice p {
+                font-size: 1rem;
+            }
+            
+            .deposit-notice strong {
+                font-size: 1.1rem;
+            }
+            
+            .kiwify-button {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .welcome-content {
+                padding: 20px;
+            }
+            
+            .welcome-title {
+                font-size: 1.8rem;
+            }
+            
+            .welcome-text {
+                font-size: 1rem;
+            }
+            
+            .welcome-button {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Animações */
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Popup Promocional -->
-    <div class="popup-overlay active">
-        <div class="popup-content">
-            <span class="popup-close"><i class="fas fa-times"></i></span>
-            <h2 class="popup-title">PROMOÇÃO ESPECIAL</h2>
-            <p class="popup-text">Código promocional para as raspadinhas</p>
+    <!-- Efeito de fundo -->
+    <div class="background-effect"></div>
+    
+    <!-- Partículas de fundo -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Popup de boas-vindas -->
+    <div class="modal" id="welcomeModal">
+        <div class="welcome-content">
+            <span class="welcome-close" onclick="closeWelcomeModal()">&times;</span>
+            <div class="welcome-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h2 class="welcome-title">Parabéns!</h2>
+            <p class="welcome-text">
+                Você acaba de ganhar <span class="welcome-highlight">R$103,00</span> de bônus!
+            </p>
+            <p class="welcome-text">
+                Para começar a jogar e liberar seu prêmio, você precisa depositar o valor mínimo de:
+                <span class="welcome-highlight">R$30,00</span>
+            </p>
+            <button class="welcome-button pulse" onclick="redirectToKiwify()">
+                <i class="fas fa-coins"></i> Depositar Agora
+            </button>
+        </div>
+    </div>
+    
+    <!-- Container Principal -->
+    <div class="game-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-tiger"></i>
+                </div>
+                <div class="logo-text">Lucky Tiger</div>
+            </div>
             
-            <div class="promo-code">BETANO2025</div>
+            <div class="user-section">
+                <div class="balance">
+                    <div class="balance-label">Seu Saldo</div>
+                    <div class="balance-value">
+                        <i class="fas fa-coins"></i> 103,00
+                    </div>
+                </div>
+                <button class="deposit-button pulse" onclick="redirectToKiwify()">
+                    <i class="fas fa-plus-circle"></i> Depositar
+                </button>
+            </div>
+        </div>
+        
+        <!-- Área de Jogos -->
+        <div class="games-section">
+            <!-- Jogo 1: Tigrinho -->
+            <div class="game-card" onclick="redirectToKiwify()">
+                <div class="game-image">
+                    <img src="https://movimentoeconomico.com.br/wp-content/uploads/2024/07/Jogo-on-line-tigrinho.jpg" alt="Tigrinho Fortuna">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Tigrinho Fortuna</h3>
+                    <p class="game-description">Jogo emocionante com símbolos de tigre. Combine os símbolos para ganhar prêmios incríveis!</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i> Jogar Agora
+                    </button>
+                </div>
+            </div>
             
-            <p class="popup-text">Você ganhou:</p>
-            <div class="bonus-amount">R$ 103,98</div>
-            <p class="popup-text">para sacar!</p>
+            <!-- Jogo 2: Raspadinha -->
+            <div class="game-card" onclick="redirectToKiwify()">
+                <div class="game-image">
+                    <img src="https://www.meunumerodasorte.com.br/blog/wp-content/uploads/2024/05/CAPA-1-Raspadinha.jpg" alt="Raspadinha Dourada">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Raspadinha Dourada</h3>
+                    <p class="game-description">Raspe e descubra prêmios instantâneos! Ganhe até 100x o valor da sua aposta.</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i> Jogar Agora
+                    </button>
+                </div>
+            </div>
             
-            <div class="deposit-info">
-                <p>Deposite o valor mínimo de <span class="promo-highlight">R$ 30,00</span></p>
+            <!-- Jogo 3: Roleta -->
+            <div class="game-card" onclick="redirectToKiwify()">
+                <div class="game-image">
+                    <img src="https://revistadotatuape.com.br/wp-content/uploads/2024/09/Roleta-do-Cassino-Novibet-.webp" alt="Roleta Premium">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Roleta Premium</h3>
+                    <p class="game-description">A roleta mais premiada da plataforma. Faça suas apostas e multiplique seus ganhos!</p>
+                    <button class="play-button">
+                        <i class="fas fa-play"></i> Jogar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Banner de Promoção -->
+        <div class="promo-banner" onclick="redirectToKiwify()">
+            <h2 class="promo-title">Bônus de Boas-Vindas!</h2>
+            <p class="promo-text">
+                <span class="promo-highlight">Deposite agora e ganhe 150% de bônus</span> no seu primeiro depósito. 
+                Bônus válido para todos os novos jogadores. Saque seus ganhos a qualquer momento!
+            </p>
+            <button class="deposit-button pulse">
+                <i class="fas fa-gift"></i> Pegue Seu Bônus Agora
+            </button>
+        </div>
+        
+        <!-- Depoimentos -->
+        <h2 style="text-align: center; margin-top: 50px; font-size: 2.5rem; color: #ffd700;">Ganhos Reais de Nossos Jogadores</h2>
+        <div class="testimonials">
+            <!-- Depoimento 1 -->
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-name">Carlos S.</div>
+                </div>
+                <p class="testimonial-text">
+                    "Comecei com R$100 e em uma semana já tinha sacado R$2.450! A plataforma é segura e os saques são rápidos."
+                </p>
+                <div class="testimonial-amount">Ganho: R$ 2.450,00</div>
+            </div>
+            
+            <!-- Depoimento 2 -->
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-name">Amanda R.</div>
+                </div>
+                <p class="testimonial-text">
+                    "Nunca imaginei que poderia ganhar tanto! Com o bônus de boas-vindas, consegui multiplicar meu dinheiro."
+                </p>
+                <div class="testimonial-amount">Ganho: R$ 1.780,00</div>
+            </div>
+            
+            <!-- Depoimento 3 -->
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-name">Ricardo M.</div>
+                </div>
+                <p class="testimonial-text">
+                    "Os jogos são divertidos e pagam mesmo. Já fiz três saques e todos foram processados em menos de 24 horas."
+                </p>
+                <div class="testimonial-amount">Ganho: R$ 3.210,00</div>
+            </div>
+        </div>
+        
+        <!-- Rodapé -->
+        <div class="footer">
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <i class="fab fa-cc-visa"></i> Visa
+                </div>
+                <div class="payment-method">
+                    <i class="fab fa-cc-mastercard"></i> Mastercard
+                </div>
+                <div class="payment-method">
+                    <i class="fab fa-pix"></i> Pix
+                </div>
+                <div class="payment-method">
+                    <i class="fas fa-barcode"></i> Boleto
+                </div>
+            </div>
+            <p>© 2023 Lucky Tiger - Todos os direitos reservados</p>
+            <p>Jogue com responsabilidade. Apenas para maiores de 18 anos.</p>
+        </div>
+    </div>
+    
+    <!-- Modal de Depósito -->
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDepositModal()">&times;</span>
+            <h2 class="modal-title">Depósito Rápido e Seguro</h2>
+            
+            <!-- Notificação de depósito mínimo -->
+            <div class="deposit-notice">
+                <p><strong>Deposite o valor mínimo de R$ 30,00</strong></p>
                 <p>Após o pagamento coloque seus dados para receber o bônus</p>
             </div>
             
-            <a href="https://pay.kiwify.com.br/nozfnkI" class="btn-popup" id="checkout-btn">
-                RESGATAR BÔNUS AGORA
-            </a>
+            <div class="deposit-options">
+                <div class="deposit-option" onclick="redirectToKiwify()">
+                    <i class="fab fa-pix fa-3x"></i>
+                    <h3>PIX</h3>
+                    <p>Pagamento instantâneo</p>
+                    <button class="deposit-select">Selecionar</button>
+                </div>
+                
+                <div class="deposit-option" onclick="redirectToKiwify()">
+                    <i class="fab fa-cc-visa fa-3x"></i>
+                    <h3>Cartão de Crédito</h3>
+                    <p>Visa, Mastercard</p>
+                    <button class="deposit-select">Selecionar</button>
+                </div>
+                
+                <div class="deposit-option" onclick="redirectToKiwify()">
+                    <i class="fas fa-barcode fa-3x"></i>
+                    <h3>Boleto</h3>
+                    <p>Pagamento em até 3 dias</p>
+                    <button class="deposit-select">Selecionar</button>
+                </div>
+            </div>
             
-            <p class="terms">* Oferta válida apenas para novos usuários. O valor do bônus estará disponível após a confirmação do depósito. Aposte com responsabilidade.</p>
+            <div class="kiwify-section">
+                <h3>Processado por Kiwify</h3>
+                <img src="https://kiwify-sandbox.nyc3.cdn.digitaloceanspaces.com/403vUF5/9kSqgKd3X5v8BdL4r1L1/logo%20horizontal%20branco.png" alt="Kiwify" style="max-width: 200px; margin: 15px 0; filter: brightness(0) invert(1);">
+                <p>Pagamentos 100% seguros com a plataforma líder do mercado</p>
+                <button class="kiwify-button" onclick="redirectToKiwify()">
+                    <i class="fas fa-lock"></i> Finalizar Depósito na Kiwify
+                </button>
+            </div>
         </div>
     </div>
-
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <h1>BETANO</h1>
-        </div>
-        
-        <nav>
-            <ul>
-                <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="#"><i class="fas fa-dice"></i> Cassino</a></li>
-                <li><a href="#"><i class="fas fa-trophy"></i> Esportes</a></li>
-                <li><a href="#"><i class="fas fa-gift"></i> Promoções</a></li>
-                <li><a href="#"><i class="fas fa-phone"></i> Suporte</a></li>
-            </ul>
-        </nav>
-        
-        <div class="user-actions">
-            <a href="#" class="btn btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="#" class="btn btn-register"><i class="fas fa-user-plus"></i> Registrar</a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Os melhores jogos de cassino online</h2>
-            <p>Experimente mais de 1000 jogos de cassino, slots, roleta, blackjack e muito mais com bônus exclusivos para novos jogadores!</p>
-            <a href="#" class="btn-large">JOGAR AGORA</a>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section class="games-section">
-        <h2 class="section-title">Jogos Populares</h2>
-        
-        <div class="games-grid">
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1620418003921-433b24b457a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Fortune Tiger</h3>
-                    <p class="game-category">Slot Machine</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Roleta Europeia</h3>
-                    <p class="game-category">Roleta</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1582657118090-af35eefb9958?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Blackjack VIP</h3>
-                    <p class="game-category">Cartas</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1615361200141-f45040f0be0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Bacará Clássico</h3>
-                    <p class="game-category">Cartas</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1615361200141-f45040f0be0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Poker Texas Hold'em</h3>
-                    <p class="game-category">Poker</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            
-            <div class="game-card">
-                <div class="game-img" style="background-image: url('https://images.unsplash.com/photo-1620418003921-433b24b457a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                <div class="game-info">
-                    <h3 class="game-title">Craps Diamante</h3>
-                    <p class="game-category">Dados</p>
-                    <div class="play-btn"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Promo Section -->
-    <section class="promo-section">
-        <div class="promo-content">
-            <h2>BÔNUS DE BOAS-VINDAS</h2>
-            <p>Registre-se hoje e receba até <span class="promo-highlight">R$ 1.500</span> em bônus mais <span class="promo-highlight">100 rodadas grátis</span> em slots selecionados!</p>
-            <a href="#" class="btn-large">REGISTRAR AGORA</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Sobre Nós</h3>
-                <p>O Cassino Betano oferece a melhor experiência de jogos online com segurança, variedade e promoções exclusivas para nossos jogadores.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Links Rápidos</h3>
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Cassino</a></li>
-                    <li><a href="#">Esportes</a></li>
-                    <li><a href="#">Promoções</a></li>
-                    <li><a href="#">Suporte</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Jogos</h3>
-                <ul>
-                    <li><a href="#">Slots</a></li>
-                    <li><a href="#">Roleta</a></li>
-                    <li><a href="#">Blackjack</a></li>
-                    <li><a href="#">Poker</a></li>
-                    <li><a href="#">Bacará</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Suporte</h3>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Depósitos</a></li>
-                    <li><a href="#">Saques</a></li>
-                    <li><a href="#">Termos e Condições</a></li>
-                    <li><a href="#">Jogo Responsável</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2023 Cassino Betano. Todos os direitos reservados. Jogue com responsabilidade. Apenas para maiores de 18 anos.</p>
-            <p>Licença: JOGOS DE AZAR DO BRASIL Nº 00000-00000/2023</p>
-        </div>
-    </footer>
-
+    
     <script>
-        // Popup functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupOverlay = document.querySelector('.popup-overlay');
-            const closePopup = document.querySelector('.popup-close');
+        // Criar partículas de fundo
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particlesCount = 30;
             
-            // Show popup on page load
-            popupOverlay.classList.add('active');
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `-${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Redirecionar para o checkout da Kiwify
+        function redirectToKiwify() {
+            window.location.href = 'https://pay.kiwify.com.br/nozfnkI';
+        }
+        
+        // Fechar modal de depósito
+        function closeDepositModal() {
+            document.getElementById('depositModal').style.display = 'none';
+        }
+        
+        // Fechar modal de boas-vindas
+        function closeWelcomeModal() {
+            document.getElementById('welcomeModal').style.display = 'none';
+        }
+        
+        // Criar efeito de confete
+        function createConfetti() {
+            const container = document.querySelector('.welcome-content');
+            const colors = ['#ffd700', '#ff9800', '#00c853', '#4a00e0', '#ff4081'];
+            const confettiCount = 100;
             
-            // Close popup
-            closePopup.addEventListener('click', function() {
-                popupOverlay.classList.remove('active');
-            });
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-20px';
+                confetti.style.opacity = '0.8';
+                confetti.style.animation = `confetti ${Math.random() * 5 + 3}s linear forwards`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            createConfetti();
             
-            // Close popup when clicking outside content
-            popupOverlay.addEventListener('click', function(e) {
-                if (e.target === popupOverlay) {
-                    popupOverlay.classList.remove('active');
-                }
-            });
-            
-            // Game cards functionality
-            const gameCards = document.querySelectorAll('.game-card');
-            gameCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // Show popup again when trying to play a game
-                    popupOverlay.classList.add('active');
-                });
+            // Adicionar evento de clique em todos os elementos que devem redirecionar
+            document.querySelectorAll('.play-button, .deposit-button, .game-card, .promo-banner').forEach(element => {
+                element.addEventListener('click', redirectToKiwify);
             });
         });
     </script>
 </body>
 </html>
-
-
-
-
